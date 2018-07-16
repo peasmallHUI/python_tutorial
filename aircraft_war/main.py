@@ -2,7 +2,7 @@ import pygame
 import time
 from pygame.locals  import *
 
-class Aircraft(object):
+class AirCraft(object):
     def __init__(self,screen_temp):
         self.x = 210
         self.y = 700
@@ -16,6 +16,8 @@ class Aircraft(object):
         for bullet in self.bullet_list:
             self.screen_temp.blit(bullet.image, (bullet.x,bullet.y))
             bullet.move()
+            if bullet.judge() :
+                self.bullet_list.remove(bullet)         
     
     def fire(self):
         bullet = Bullet(self.screen_temp,self.x,self.y)
@@ -27,6 +29,43 @@ class Aircraft(object):
     def move_y(self, y):
         self.y += y
 
+class EnemyCraft(object):
+    def __init__(self,screen_temp):
+        self.x = 0
+        self.y = 0
+        self.image = pygame.image.load("e:/Documents/GitHub/python_tutorial/aircraft_war/feiji/enemy0.png")
+        self.screen_temp = screen_temp
+        self.direction = "right"
+        self.bullet_list = []
+    
+    def display(self):
+        self.screen_temp.blit(self.image, (self.x,self.y))
+
+        for bullet in self.bullet_list:
+            self.screen_temp.blit(bullet.image, (bullet.x,bullet.y))
+            bullet.move()
+    
+    def fire(self):
+        bullet = Bullet(self.screen_temp,self.x,self.y)
+        self.bullet_list.append(bullet)
+    
+    def move(self):
+        if self.direction == "right":
+            self.x +=5
+        elif self.direction == "left":
+            self.x -=5
+        
+        if self.x > 480-50 :
+            self.direction = "left"
+        elif self.x < 0:
+            self.direction = "right"
+    
+    # def move_x(self,x):
+    #     self.x += x
+    
+    # def move_y(self, y):
+    #     self.y += y
+
 class Bullet(object):
     def __init__(self,screen_temp,x,y):
         self.x = x + 40
@@ -36,6 +75,12 @@ class Bullet(object):
     
     def move(self):
         self.y -=5
+    
+    def judge(self):
+        if self.y < 0:
+            return True
+        else:
+            return False
 
 def key_control(screen_temp,aircraft_temp):
     for event in pygame.event.get():
@@ -74,17 +119,27 @@ def key_control(screen_temp,aircraft_temp):
 
 
 def main():
+    # window
     screen = pygame.display.set_mode((480,852),0,32)
+    
+    #background
     background = pygame.image.load("e:/Documents/GitHub/python_tutorial/aircraft_war/feiji/background.png")
-    aircraft = Aircraft(screen)
+    
+    #aircraft
+    aircraft = AirCraft(screen)
     # aircraft = pygame.image.load("e:/Documents/GitHub/python_tutorial/aircraft_war/feiji/hero1.png")
     # x = 210
     # y = 700
+
+    #enemy
+    enemy = EnemyCraft(screen)
 
     while True:
         screen.blit(background, (0,0))
         # screen.blit(aircraft,(x,y))
         aircraft.display()
+        enemy.display()
+        enemy.move()
         pygame.display.update()
         key_control(screen,aircraft)        
         time.sleep(0.01)
