@@ -1,6 +1,6 @@
 # Python Tutorial
 ## 第一章 Python基础
-### [第一节 Linux操作系统基础](./python_tutorial#第一节-linux操作系统基础-1)
+### [第一节 Linux操作系统基础](https://github.com/peasmallHUI//python_tutorial#%E7%AC%AC%E4%B8%80%E8%8A%82-linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80-1)
 
 ### 第一节 Linux操作系统基础
 - 常见命令
