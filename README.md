@@ -1,6 +1,6 @@
 # Python Tutorial
 ## 第一章 Python基础
-### [第一节 Linux操作系统基础](./##第一节Linux操作系统基础-1)
+### [第一节 Linux操作系统基础](./##第一节-Linux操作系统基础-1)
 
 ### 第一节 Linux操作系统基础
 - 常见命令
