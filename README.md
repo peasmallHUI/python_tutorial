@@ -250,3 +250,61 @@
     finally:
         pass
     ```
+
+## 第二章 Python核心
+### 第一节 Python核心编程
+1. 拷贝
+    - 引用
+        >正常赋值不会新建对象，而是引用计数加一
+    
+    - 浅拷贝
+        >只拷贝一层
+        ```python
+        import copy
+        a = [1, 2, 3]
+        b = copy.copy(a)
+        b = a[:]
+        ```
+    
+    - 深拷贝
+        >一直拷贝
+        ```python
+        import copy
+        c = copy.deepcopy(a)
+        ```
+
+2. 私有化
+    >xx:公有变量<br>
+    >_xx:禁止导入，类对象和子类可以访问<br>
+    >__xx:外部无法访问（名字重整）<br>
+    >\_\_xx\_\_:系统属性<br>
+
+3. property
+    ```python
+    class Number(object):
+        def __init__ (self):
+            self.__num = 100
+        
+        def getnum(self):
+            return self.__num
+        
+        def setnum(self,num):
+            self.__num = num
+        
+        num = property(getnum, setnum)
+    ```
+
+    ```python
+    class Number(object):
+        def __init__(self):
+            self.__num = 100
+        
+        @property
+        def num(self):
+            return self.__num
+        
+        @num.setter
+        def num(self,num):
+            self.__num = num
+    ```
+
