@@ -2,7 +2,7 @@
 import requests
 import itchat
 # 去图灵机器人官网注册后会生成一个apikey，可在个人中心查看
-KEY = '8edce3ce905a4c1dbb965e6b35c3838f'
+KEY = 'a5ce421006b2402abc5cf32d587432ed'
 def get_response(msg):
     apiUrl = 'http://www.tuling123.com/openapi/api'
     data = {
